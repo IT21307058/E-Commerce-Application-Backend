@@ -23,7 +23,9 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final UserDetailsServiceImpl userDetailsService;
-    private JwtUtil jwtUtil;
+
+//    @Autowired
+    private final JwtUtil jwtUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -38,6 +40,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             //looking good
             token = authHeader.substring(7);
             username = jwtUtil.extractUsername(token);
+
+            System.out.println(token);
         }
 
 
